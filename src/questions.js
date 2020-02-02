@@ -16,6 +16,10 @@ const questions = [
   {
     question: "/questions/question4/question.md",
     answer: "/questions/question4/answer.md"
+  },
+  {
+    question: "/questions/question5/question.md",
+    answer: "/questions/question5/answer.md"
   }
 ];
 
