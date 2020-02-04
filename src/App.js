@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import questions from "./questions";
 import CodeBlock from './CodeBlock';
 import { Carousel } from 'react-responsive-carousel';
+import cx from 'classnames';
 import ReactMarkdown from 'react-markdown';
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -47,26 +48,28 @@ function App() {
   const [selectedItem, setSelectedItem] = useState(0);
 
   useEffect(() => {
-    var hey = questions.map(q => Object.values(q).reduce((total, item) => {console.log(item); return [...total, item];}, [])).flat().map(x => fetch(x));
+    var hey = questions.map(q => Object.values(q).reduce((total, item) => { console.log(item); return [...total, item]; }, [])).flat().map(x => fetch(x));
     console.log('help ', hey);
     Promise.all(hey)
       .then(response => Promise.all(response.map(x => x.text())))
-      .then(blah => {console.log('after fetching: ', blah); setData(questions.map((q, i) => {q.question = blah[i + i]; q.answer = blah[i + i + 1]; return q;}))})
+      .then(blah => { console.log('after fetching: ', blah); setData(questions.map((q, i) => { q.question = blah[i + i]; q.answer = blah[i + i + 1]; return q; })) })
   }, []);
 
   return (
     <div className="App">
-      <Carousel showThumbs={false} showStatus={false} showArrows={false} showIndicators={false} onChange={(index) => { setSelectedItem(index); setData(resetData(data)); }} selectedItem={selectedItem} useKeyboardArrows emulateTouch>
-        {data.map(item => (
-          <div className="Slide">
-            <div className="Slide-content">
-              {item.isShowingAnswer ? (
-                <ReactMarkdown renderers={{ code: CodeBlock }} source={item.answer} escapeHtml={false} />
-              ) : (
+      <Carousel swipeScrollTolerance={40} showThumbs={false} showStatus={false} showArrows={false} showIndicators={false} onChange={(index) => { setSelectedItem(index); setData(resetData(data)); }} selectedItem={selectedItem} useKeyboardArrows emulateTouch>
+        {data.map((item, index) => (
+          <div className="Slide" aria-hidden={index === selectedItem ? 'true' : 'false'}>
+            <div role="button" tabIndex={index === selectedItem ? null : '-1'} className={cx('Slide-content', {
+              'is-flipped': item.isShowingAnswer
+            })} type="div" onClick={() => { setData(alterData(data, selectedItem)) }}>
+              <div className="Card Card--front">
                 <ReactMarkdown renderers={{ code: CodeBlock }} source={item.question} escapeHtml={false} />
-                )}
+              </div>
+              <div className="Card Card--back">
+                <ReactMarkdown renderers={{ code: CodeBlock }} source={item.answer} escapeHtml={false} />
+              </div>
             </div>
-            <button className="Slide-button" type="button" onClick={() => { setData(alterData(data, selectedItem)) }}>{item.isShowingAnswer ? 'Back to Question' : 'Answer'}</button>
           </div>
         ))}
       </Carousel>

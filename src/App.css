@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
@@ -28,9 +34,17 @@ p {
   margin: 0;
 }
 
-body,
-.Slide {
-  background: red; 
+ul {
+  text-align: left;
+  padding-top: 1em;
+}
+
+body {
+  background-color: #1b262c;
+}
+
+.carousel .slide {
+  background-color: #1b262c;
 }
 
 .Slide {
@@ -39,6 +53,8 @@ body,
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  -webkit-perspective: 300vw;
+        perspective: 300vw;
 }
 .Slide-content {
   display: flex;
@@ -46,20 +62,97 @@ body,
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: calc(100vh - 100px);
+  height: 100vh;
   color: #fff;
   width: 100%;
   padding: 1em;
-  overflow-y: auto;
-  /* -webkit-overflow-scrolling: touch; */
+  /* overflow-y: auto; */
+  border: 0;
+  -webkit-overflow-scrolling: touch;
+  width: calc(100% - 4rem);
+  margin: 2rem 0;
+  border-radius: 10px;
+  cursor: pointer;
+
+  position: relative;
+  -webkit-transition: -webkit-transform .7s;
+  transition: -webkit-transform .7s;
+  transition: transform .7s;
+  transition: transform .7s,-webkit-transform .7s;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
-.Slide-button {
+.Slide-content.is-flipped {
+  -webkit-transform: rotateY(180deg) translateZ(0);
+  transform: rotateY(180deg) translateZ(0);
+}
+.Card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,.5);
+  padding: 2em;
+  line-height: 1.1;
+}
+.Card--front {
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,.5);
+  font-size: 1.75em;
+  overflow: hidden;
+  background-color: #1789fc;
+}
+.Card--back {
+  color: #1789fc;
+  font-size: 1.25em;
+  -webkit-transform: translateZ(0) rotateY(180deg);
+  transform: translateZ(0) rotateY(180deg);
+  background-color: #fff;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  justify-content: flex-start;
+}
+pre {
+  border-radius: 5px;
+  padding: 15px !important;
+  max-width: 100%;
+  overflow-x: visible !important;
+}
+/* .Slide-button {
   height: 100px;
   width: 100%;
   border: 0;
-  background-color: white;
+  background-color: #bbe1fa;
+  color: #102E40;
   -webkit-appearance: none;
   appearance: none;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-style: italic;
+  transition: background-color .25s;
+  cursor: pointer;
+} */
+.Slide-content--answer {
+  /* background-color: #3282b8; */
+}
+.Slide-content:focus {
+  outline: 0;
+  -webkit-highlight-color: none;
+  -webkit-tap-highlight-color: none;
 }
 
 .App-link {
