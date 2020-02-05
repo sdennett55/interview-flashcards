@@ -65,6 +65,7 @@ function App() {
               'is-flipped': item.isShowingAnswer
             })} type="div" onClick={() => { setData(alterData(data, selectedItem)) }}>
               <div className="Card Card--front">
+                <div className="Card-num">{index + 1}</div>
                 <ReactMarkdown renderers={{ code: CodeBlock }} source={item.question} escapeHtml={false} />
                 <button className="Card-reshuffleBtn" onClick={e => reshuffle({e, data, setData, selectedItem})}>
                   <svg className="Card-reshuffleIcon" viewBox="0 0 512 512">
