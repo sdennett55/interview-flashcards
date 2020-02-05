@@ -58,7 +58,7 @@ function App() {
 
   return (
     <div className="App">
-      <Carousel swipeScrollTolerance={40} showThumbs={false} showStatus={false} showArrows={false} showIndicators={false} onChange={(index) => { setSelectedItem(index); setData(resetData(data)); }} selectedItem={selectedItem} useKeyboardArrows emulateTouch>
+      <Carousel swipeScrollTolerance={45} showThumbs={false} showStatus={false} showArrows={false} showIndicators={false} onChange={(index) => { setSelectedItem(index); setData(resetData(data)); }} selectedItem={selectedItem} useKeyboardArrows emulateTouch>
         {data.map((item, index) => (
           <div className="Slide" aria-hidden={index === selectedItem ? 'true' : 'false'}>
             <div role="button" tabIndex={index === selectedItem ? null : '-1'} className={cx('Slide-content', {
