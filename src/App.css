@@ -1,3 +1,24 @@
+@font-face {
+  font-family: 'PT_Sans';
+  src: url(./fonts/ptsans_regular.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'PT_Sans';
+  src: url(./fonts/ptsans_bolditalic.woff2) format('woff2');
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'PT_Sans';
+  src: url(./fonts/ptsans_bold.woff2) format('woff2');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'PT_Sans';
+  src: url(./fonts/ptsans_italic.woff2) format('woff2');
+  font-style: italic;
+}
+
 *,
 *::before,
 *::after {
@@ -6,6 +27,7 @@
 
 .App {
   text-align: center;
+  font-family: 'PT_Sans';
 }
 
 .App-logo {
@@ -113,10 +135,22 @@ body {
   text-shadow: 1px 1px 3px rgba(0,0,0,.5);
   font-size: 1.75em;
   overflow: hidden;
-  background-color: #1789fc;
+  background-color: #3282b8;
+}
+.Card--front::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: .4;
+  background-color: #3282b8;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpolygon fill='%23ffffff' fill-opacity='.1' points='120 0 120 60 90 30 60 0 0 0 0 0 60 60 0 120 60 120 90 90 120 60 120 0'/%3E%3C/svg%3E");
 }
 .Card--back {
-  color: #1789fc;
+  color: #3282b8;
   font-size: 1.25em;
   -webkit-transform: translateZ(0) rotateY(180deg);
   transform: translateZ(0) rotateY(180deg);
@@ -124,6 +158,39 @@ body {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   justify-content: flex-start;
+}
+.Card-reshuffleBtn {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+}
+.Card-reshuffleIcon {
+  width: 50%;
+  height: 50%;
+  fill: #3282b8;
+}
+.Card-reshuffleBtn:hover,
+.Card-reshuffleBtn:focus {
+  background-color: #1b262c;
+}
+.Card-reshuffleBtn:focus {
+  outline: 0;
+}
+.Card-reshuffleBtn:hover .Card-reshuffleIcon,
+.Card-reshuffleBtn:focus .Card-reshuffleIcon {
+  fill: #fff;
 }
 pre {
   border-radius: 5px;

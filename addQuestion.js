@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const questionsDir = path.join(__dirname, '/public/questions');
+const questionsDir = path.join(__dirname, '/public/question_answer_pairs');
 
 // If progress.argv exists, use that name, otherwise 
 function getDirectoryName() {
@@ -9,7 +9,7 @@ function getDirectoryName() {
     return path.join(questionsDir, `/${process.argv[2]}`);
   } else {
     const num = fs.readdirSync(questionsDir).length + 1;
-    return path.join(questionsDir, `question${num}`);
+    return path.join(questionsDir, `qa_pair${num}`);
   }
 }
 
