@@ -9,13 +9,12 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import './App.css';
 
 const initialData = [
-  { question: 'Loading...', answer: 'Loading Answer...' },
-  { question: 'Loading...', answer: 'Loading Answer...' },
-  { question: 'Loading...', answer: 'Loading Answer...' },
+  { question: '## Loading...', answer: '## Loading Answer...' },
+  { question: '## Loading...', answer: '## Loading Answer...' },
+  { question: '## Loading...', answer: '## Loading Answer...' },
 ];
 
 const alterData = (data, selectedItem) => data.map((x, index) => {
-  console.log('pressed button ', x, selectedItem);
   if (index === selectedItem) {
     x.isShowingAnswer = !x.isShowingAnswer;
   } else {
@@ -38,14 +37,12 @@ function sattoloCycle(items) {
   return items;
 }
 
-const reshuffle = ({e, data, setData, selectedItem, setSelectedItem}) => {
+const reshuffle = ({e, data, setData, selectedItem}) => {
   e.stopPropagation();
 
   const shuffledData = sattoloCycle([...data]);
 
   setData(shuffledData);
-
-  console.log({data, selectedItem});
 }
 
 function App() {
@@ -53,11 +50,10 @@ function App() {
   const [selectedItem, setSelectedItem] = useState(0);
 
   useEffect(() => {
-    var hey = questions.map(q => Object.values(q).reduce((total, item) => { console.log(item); return [...total, item]; }, [])).flat().map(x => fetch(x));
-    console.log('help ', hey);
+    var hey = questions.map(q => Object.values(q).reduce((total, item) => { return [...total, item]; }, [])).flat().map(x => fetch(x));
     Promise.all(hey)
       .then(response => Promise.all(response.map(x => x.text())))
-      .then(blah => { console.log('after fetching: ', blah); setData(questions.map((q, i) => { q.question = blah[i + i]; q.answer = blah[i + i + 1]; return q; })) })
+      .then(blah => { setData(questions.map((q, i) => { q.question = blah[i + i]; q.answer = blah[i + i + 1]; return q; })) })
   }, []);
 
   return (
@@ -69,9 +65,8 @@ function App() {
               'is-flipped': item.isShowingAnswer
             })} type="div" onClick={() => { setData(alterData(data, selectedItem)) }}>
               <div className="Card Card--front">
-                {console.log('within render!!')}
                 <ReactMarkdown renderers={{ code: CodeBlock }} source={item.question} escapeHtml={false} />
-                <button className="Card-reshuffleBtn" onClick={e => reshuffle({e, data, setData, selectedItem, setSelectedItem})}>
+                <button className="Card-reshuffleBtn" onClick={e => reshuffle({e, data, setData, selectedItem})}>
                   <svg className="Card-reshuffleIcon" viewBox="0 0 512 512">
                     <path d="M506.24,371.7l-96-80c-4.768-4-11.424-4.8-17.024-2.208c-5.632,2.656-9.216,8.288-9.216,14.496v48h-26.784
                       c-22.208,0-42.496-11.264-54.272-30.08l-103.616-165.76c-23.52-37.664-64.096-60.16-108.544-60.16H0v64h90.784

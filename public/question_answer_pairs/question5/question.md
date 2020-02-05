@@ -1,1 +1,0 @@
-## Question: What is love?
