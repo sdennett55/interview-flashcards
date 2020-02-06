@@ -24,6 +24,13 @@
 *::after {
   box-sizing: border-box;
 }
+button {
+  font: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0;
+  border: 0;
+}
 
 .App {
   text-align: center;
@@ -106,7 +113,7 @@ body {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
-.Slide-content.is-flipped {
+.is-flipped .Slide-content {
   -webkit-transform: rotateY(180deg) translateZ(0);
   transform: rotateY(180deg) translateZ(0);
 }
@@ -149,7 +156,7 @@ body {
   background-color: #3282b8;
 background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpolygon fill='%23ffffff' fill-opacity='.1' points='120 0 120 60 90 30 60 0 0 0 0 0 60 60 0 120 60 120 90 90 120 60 120 0'/%3E%3C/svg%3E");
 }
-.Card--front::after {
+.Card--front:not(.Card--noNumbers)::after {
   content: '';
   position: absolute;
   top: -2.5em;
@@ -175,7 +182,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   position: absolute;
   bottom: 1rem;
   right: 1rem;
-  background-color: #fff;
+  background-color: rgba(15,76,117, .8);
   border-radius: 50%;
   width: 2em;
   height: 2em;
@@ -191,33 +198,71 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .Card-reshuffleIcon {
   width: 50%;
   height: 50%;
-  fill: #3282b8;
+  fill: #fff;
 }
 .Card-reshuffleBtn:hover,
 .Card-reshuffleBtn:focus {
-  background-color: #1b262c;
+  background-color: #fff;
 }
 .Card-reshuffleBtn:focus {
   outline: 0;
 }
 .Card-reshuffleBtn:hover .Card-reshuffleIcon,
 .Card-reshuffleBtn:focus .Card-reshuffleIcon {
-  fill: #fff;
+  fill: #3282b8;
 }
 .Card-num {
   position: absolute;
-  top: 8px;
-  left: 0px;
+  top: 13px;
+  left: 2px;
   width: 55px;
   text-align: center;
   font-weight: bold;
-  font-size: 1.25em;
+  font-size: .8em;
+  letter-spacing: .02em;
+}
+.Card-icon {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  bottom: 3rem;
+  background: 0;
+  border: 0;
+  font: inherit;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0s;
+  pointer-events: none;
+}
+.Card-icon--left {
+  left: 3rem;
+  fill: #fd5e53;
+}
+.Card-icon--right {
+  right: 3rem;
+  width: 35px;
+  height: 31px;
+  fill: #21bf73;
+}
+.Card-refreshBtn {
+  background: rgba(15,76,117, .8);
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 1em;
+  font: inherit;
+}
+.is-flipped .Card-icon {
+  opacity: 1;
+  transition: opacity .3s .7s;
+  pointer-events: all;
 }
 pre {
   border-radius: 5px;
   padding: 15px !important;
   max-width: 100%;
-  overflow-x: visible !important;
+  -webkit-overflow-scrolling: touch;
+  min-height: fit-content;
 }
 /* .Slide-button {
   height: 100px;
