@@ -1,1 +1,1 @@
-## What are your greatest strengths?
+### Explain how `this` works in JavaScript

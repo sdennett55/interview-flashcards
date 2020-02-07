@@ -1,1 +1,1 @@
-## What are your greatest weaknesses?
+### What is the definition of a higher-order function?

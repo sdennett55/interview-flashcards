@@ -19,7 +19,7 @@
     "build": "node setup.js && react-scripts build",
     "test": "node test.js",
     "eject": "react-scripts eject",
-    "add": "node addQuestion.js && node setup.js"
+    "add": "node run"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -56,10 +56,11 @@ const handleStatusClick = ({ e, filteredData, setFilteredData, selectedItem, set
   }
 }
 
-const fullRefresh = ({ e, data, setFilteredData }) => {
+const fullRefresh = ({ e, data, setFilteredData, setSelectedItem }) => {
   if (e) {
     e.stopPropagation();
   }
+  // setSelectedItem(0);
   setFilteredData(data);
   console.log('refresh: ', data);
 };
@@ -73,7 +74,7 @@ function App() {
     if (filteredData.length > 0 && selectedItem > filteredData.length - 1) {
       setSelectedItem(filteredData.length - 1);
     }
-  }, [filteredData.length])
+  }, [filteredData.length]);
 
   useEffect(() => {
     var hey = questions.map(q => Object.values(q).reduce((total, item) => { return [...total, item]; }, [])).flat().map(x => fetch(x));
@@ -97,9 +98,12 @@ function App() {
               <div className="Card Card--front">
                 <div className="Card-num">{`${index + 1}/${filteredData.length}`}</div>
                 <ReactMarkdown renderers={{ code: CodeBlock }} source={item.question} escapeHtml={false} />
-                <button className="Card-reshuffleBtn" onClick={e => fullRefresh({ e, data, setFilteredData })}>
-                  <RefreshIcon className="Card-reshuffleIcon" />
-                </button>
+                {filteredData.length < data.length && (
+                  <button className="Card-reshuffleBtn" onClick={e => fullRefresh({ e, data, setFilteredData, setSelectedItem })}>
+                    <span className="Card-reshuffleNum">{data.length}</span>
+                    <RefreshIcon className="Card-reshuffleIcon" />
+                  </button>
+                )}
               </div>
               <div className="Card Card--back">
                 <ReactMarkdown renderers={{ code: CodeBlock }} source={item.answer} escapeHtml={false} />
@@ -118,7 +122,7 @@ function App() {
         <div className="Slide">
           <div className="Slide-content">
             <div className="Card Card--front Card--noNumbers">
-              <button className="Card-refreshBtn" onClick={() => fullRefresh({ data, setFilteredData })}>Great job! Click here to refresh!</button>
+              <button className="Card-refreshBtn" onClick={(e) => fullRefresh({ e, data, setFilteredData, setSelectedItem })}>Great job! Tap here to refresh!</button>
             </div>
           </div>
         </div>

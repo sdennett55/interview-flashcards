@@ -3,18 +3,24 @@ const path = require('path');
 
 const questionsDir = path.join(__dirname, '/public/question_answer_pairs');
 
-// If progress.argv exists, use that name, otherwise 
-function getDirectoryName() {
-  if (process.argv[2]) {
-    return path.join(questionsDir, `/${process.argv[2]}`);
-  } else {
-    const num = fs.readdirSync(questionsDir).length + 1;
-    return path.join(questionsDir, `qa_pair${num}`);
-  }
+async function createDirectory(index = 1) {
+  const filesNum = fs.readdirSync(questionsDir).length;
+  const num = filesNum + 1;
+  const directoryName = path.join(questionsDir, `qa_pair${num}`);
+  fs.mkdirSync(directoryName);
+  fs.writeFileSync(path.join(directoryName, 'question.md'), `## Question ${num}`);
+  fs.writeFileSync(path.join(directoryName, 'answer.md'), `## Answer ${num}`);
 }
 
-const directoryName = getDirectoryName();
-
-fs.mkdirSync(directoryName);
-fs.writeFileSync(path.join(directoryName, 'question.md'), '## Question:');
-fs.writeFileSync(path.join(directoryName, 'answer.md'), '## Answer:');
+if (process.argv[2] && !isNaN(process.argv[2])) {
+  const forLoop = async () => {
+    const num = Number(process.argv[2]);
+    for (let x = 0; x < num; x++) {
+      console.log(x + 1);
+      await createDirectory(x + 1);
+    }  
+  }
+  forLoop();
+} else {
+  createDirectory();
+}

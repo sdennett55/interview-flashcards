@@ -12,6 +12,14 @@ const QaPairs = [
   {
     question: "/question_answer_pairs/qa_pair3/question.md",
     answer: "/question_answer_pairs/qa_pair3/answer.md"
+  },
+  {
+    question: "/question_answer_pairs/qa_pair4/question.md",
+    answer: "/question_answer_pairs/qa_pair4/answer.md"
+  },
+  {
+    question: "/question_answer_pairs/qa_pair5/question.md",
+    answer: "/question_answer_pairs/qa_pair5/answer.md"
   }
 ];
 

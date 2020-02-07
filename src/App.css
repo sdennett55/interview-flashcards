@@ -60,12 +60,21 @@ button {
 }
 
 p {
-  margin: 0;
+  margin: .5em 0;
 }
 
-ul {
+ul,
+ol {
   text-align: left;
-  padding-top: 1em;
+  padding-top: .5em;
+}
+ul li,
+ol li {
+  margin: .5em 0;
+}
+.Card--back a {
+  color: #165783;
+  font-weight: bold;
 }
 
 body {
@@ -177,6 +186,16 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   justify-content: flex-start;
+  text-align: left;
+  line-height: normal;
+  color: #1b262c;
+  align-items: flex-start;
+  font-size: 1rem;
+}
+@media (orientation: landscape) {
+  .Card--back {
+    padding: 2em 4em;
+  }
 }
 .Card-reshuffleBtn {
   position: absolute;
@@ -196,8 +215,8 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   font: inherit;
 }
 .Card-reshuffleIcon {
-  width: 50%;
-  height: 50%;
+  width: 80%;
+  height: 80%;
   fill: #fff;
 }
 .Card-reshuffleBtn:hover,
@@ -210,6 +229,19 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .Card-reshuffleBtn:hover .Card-reshuffleIcon,
 .Card-reshuffleBtn:focus .Card-reshuffleIcon {
   fill: #3282b8;
+}
+.Card-reshuffleNum {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: .5em;
+  text-align: center;
+  color: #fff;
+}
+.Card-reshuffleBtn:hover .Card-reshuffleNum,
+.Card-reshuffleBtn:focus .Card-reshuffleNum {
+  color: #3282b8
 }
 .Card-num {
   position: absolute;
@@ -233,6 +265,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   opacity: 0;
   transition: opacity 0s;
   pointer-events: none;
+  transform: translateZ(0);
 }
 .Card-icon--left {
   left: 3rem;
@@ -263,6 +296,25 @@ pre {
   max-width: 100%;
   -webkit-overflow-scrolling: touch;
   min-height: fit-content;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.Card--front code {
+  background: rgba(255,255,255,.9);
+  color: #3282b8;
+  text-shadow: none;
+}
+code {
+  background: #3282b8;
+  color: white;
+  border-radius: 3px;
+  padding: 0px 2px;
+}
+pre code {
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+  background: inherit;
 }
 /* .Slide-button {
   height: 100px;
