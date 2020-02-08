@@ -9,10 +9,10 @@ There are _plenty_ of flashcard apps out there to help developers with interview
 * Must use their app to input custom questions and answers
 * No code syntax highlighting
 * Not built for mobile use
-* Advertisements and paid plans
+* Advertisements and/or paid plans
 * Overly complex
 
-I longed for an app where I could simply write my questions and answers in **markdown** files and then use a simple mobile app to practice with. A flashcards app truly meant for developers.
+I longed for an app where I could simply write my questions and answers in **markdown files** and then use a **simple mobile app** to practice with. A flashcards app _truly_ meant for developers. Besides, most collections of open source interview questions exist as markdown files (i.e. [https://github.com/yangshun/front-end-interview-handbook](https://github.com/yangshun/front-end-interview-handbook))
 
 ### How to Use
 
@@ -20,6 +20,8 @@ I longed for an app where I could simply write my questions and answers in **mar
 2. `cd interview-flashcards && npm start` (bootstrapped with create-react-app) 
 3. Add any questions and answers to the `public/question_answer_pairs` directory
 4. Publish to github and then a hosting platform of your choice ([Netlify](https://www.netlify.com/) perhaps), or just run locally and hit your computers IP on port 3000 on your mobile device
+
+----
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
