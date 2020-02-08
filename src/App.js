@@ -5,7 +5,6 @@ import { Carousel } from 'react-responsive-carousel';
 import cx from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import { CheckIcon, XIcon, RefreshIcon } from './icons';
-
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import './App.css';
 
@@ -26,10 +25,10 @@ const alterData = (data, selectedItem) => data.map((x, index) => {
   return temp;
 });
 
-const resetData = data => data.map(x => { 
-  var temp = { ...x }; 
-  temp.isShowingAnswer = false; 
-  return temp; 
+const resetData = data => data.map(x => {
+  var temp = { ...x };
+  temp.isShowingAnswer = false;
+  return temp;
 });
 
 const reshuffle = ({ e, filteredData, selectedItem, setSelectedItem }) => {
@@ -60,9 +59,7 @@ const fullRefresh = ({ e, data, setFilteredData, setSelectedItem }) => {
   if (e) {
     e.stopPropagation();
   }
-  // setSelectedItem(0);
   setFilteredData(data);
-  console.log('refresh: ', data);
 };
 
 function App() {
@@ -77,8 +74,8 @@ function App() {
   }, [filteredData.length]);
 
   useEffect(() => {
-    var hey = questions.map(q => Object.values(q).reduce((total, item) => { return [...total, item]; }, [])).flat().map(x => fetch(x));
-    Promise.all(hey)
+    var fetchMarkdownPromises = questions.map(q => Object.values(q).reduce((total, item) => { return [...total, item]; }, [])).flat().map(x => fetch(x));
+    Promise.all(fetchMarkdownPromises)
       .then(response => Promise.all(response.map(x => x.text())))
       .then(blah => {
         var temp = questions.map((q, i) => { q.question = blah[i + i]; q.answer = blah[i + i + 1]; return q; });
@@ -127,7 +124,7 @@ function App() {
           </div>
         </div>
       )}
-    </div >
+    </div>
   );
 }
 
