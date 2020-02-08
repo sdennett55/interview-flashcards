@@ -21,7 +21,7 @@ I longed for an app where I could simply write my questions and answers in **mar
 3. Add any questions and answers to the `public/question_answer_pairs` directory
 4. Push to github and then publish to a hosting platform of your choice ([Netlify](https://www.netlify.com/) perhaps), or just run locally and hit your computers IP on port 3000 on your mobile device
 
-### Available Scripts
+## Available Scripts
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
