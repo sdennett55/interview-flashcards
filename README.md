@@ -1,4 +1,4 @@
-## Mobile Flashcards App
+## Interview Flashcards App
 
 An app that allows you to write (or borrow) practice interview questions and answers in **markdown**, and then test yourself with the mobile app on-the-go!
 
@@ -21,11 +21,9 @@ I longed for an app where I could simply write my questions and answers in **mar
 3. Add any questions and answers to the `public/question_answer_pairs` directory
 4. Push to github and then publish to a hosting platform of your choice ([Netlify](https://www.netlify.com/) perhaps), or just run locally and hit your computers IP on port 3000 on your mobile device
 
-----
+### Available Scripts
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
 
 In the project directory, you can run:
 
@@ -43,5 +41,5 @@ Writes additional qa_pair directories to the `/question_answer_pairs` directory.
 
 ### Versions:
 
-Node: v11.15.0
-NPM: v6.7.0
+* Node: v11.15.0
+* NPM: v6.7.0
