@@ -1,25 +1,25 @@
 ## Mobile Flashcards App
 
-An app that allows you to write practice interview questions and answers in markdown and then test yourself with the mobile app on-the-go!
+An app that allows you to write (or borrow) practice interview questions and answers in **markdown**, and then test yourself with the mobile app on-the-go!
 
 ### Why this one?
 There are _plenty_ of flashcard apps out there to help developers with interview prep. However, I noticed a few things about most of them that I wasn't thrilled about:
 
 * Requires an account 
-* Must use their app to input custom questions and answers
+* Must use their WYSIWYG to submit custom questions and answers
 * No code syntax highlighting
 * Not built for mobile use
 * Advertisements and/or paid plans
 * Overly complex
 
-I longed for an app where I could simply write my questions and answers in **markdown files** and then use a **simple mobile app** to practice with. A flashcards app _truly_ meant for developers. Besides, most collections of open source interview questions exist as markdown files (i.e. [https://github.com/yangshun/front-end-interview-handbook](https://github.com/yangshun/front-end-interview-handbook))
+I longed for an app where I could simply write my questions and answers in **markdown files** and then use a **simple mobile app** to practice with. Besides, most collections of open source interview questions out there exist as markdown files (i.e. [https://github.com/yangshun/front-end-interview-handbook](https://github.com/yangshun/front-end-interview-handbook)). Borrow or write the interview questions that are relevant to you!
 
 ### How to Use
 
 1. Clone the repo
 2. `cd interview-flashcards && npm start` (bootstrapped with create-react-app) 
 3. Add any questions and answers to the `public/question_answer_pairs` directory
-4. Publish to github and then a hosting platform of your choice ([Netlify](https://www.netlify.com/) perhaps), or just run locally and hit your computers IP on port 3000 on your mobile device
+4. Push to github and then publish to a hosting platform of your choice ([Netlify](https://www.netlify.com/) perhaps), or just run locally and hit your computers IP on port 3000 on your mobile device
 
 ----
 
