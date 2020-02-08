@@ -2,6 +2,8 @@
 
 An app that allows you to write (or borrow) practice interview questions and answers in **markdown**, and then test yourself with the mobile app on-the-go!
 
+**Mobile App Demo: [https://interview-flashcards.netlify.com/](https://interview-flashcards.netlify.com/)**
+
 ![Image Preview of the Mobile App](images/example.png)
 
 ### Why this one?
