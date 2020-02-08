@@ -2,6 +2,8 @@
 
 An app that allows you to write (or borrow) practice interview questions and answers in **markdown**, and then test yourself with the mobile app on-the-go!
 
+![](./interview-flashcards.gif)
+
 ### Why this one?
 There are _plenty_ of flashcard apps out there to help developers with interview prep. However, I noticed a few things about most of them that I wasn't thrilled about:
 
@@ -16,7 +18,7 @@ I longed for an app where I could simply write my questions and answers in **mar
 
 ### How to Use
 
-1. Clone the repo
+1. Clone or fork the repo
 2. `cd interview-flashcards && npm start` (bootstrapped with create-react-app) 
 3. Add any questions and answers to the `public/question_answer_pairs` directory
 4. Push to github and then publish to a hosting platform of your choice ([Netlify](https://www.netlify.com/) perhaps), or just run locally and hit your computers IP on port 3000 on your mobile device
