@@ -2,7 +2,7 @@
 
 An app that allows you to write (or borrow) practice interview questions and answers in **markdown**, and then test yourself with the mobile app on-the-go!
 
-![Animated Preview](images/interview-flashcards.gif)
+![Image Preview of the Mobile App](images/example.png)
 
 ### Why this one?
 There are _plenty_ of flashcard apps out there to help developers with interview prep. However, I noticed a few things about most of them that I wasn't thrilled about:
