@@ -17,6 +17,7 @@
   "scripts": {
     "start": "node setup.js && react-scripts start",
     "build": "node setup.js && react-scripts build",
+    "setup": "node setup.js",
     "test": "node test.js",
     "eject": "react-scripts eject",
     "add": "node run"

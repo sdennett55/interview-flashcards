@@ -43,6 +43,10 @@ You will also see any lint errors in the console.
 
 Writes additional qa_pair directories to the `/question_answer_pairs` directory.
 
+### `npm run setup`
+
+Reads the `/question_answer_pairs` directory and updates the mobile app. Run this when you delete any qa_pair directories.
+
 ### Supported Versions:
 
 * Node: v11.15.0
