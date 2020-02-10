@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import questions from "./qa_pairs";
+import qaPairs from "./qa_pairs";
 import CodeBlock from './CodeBlock';
 import { Carousel } from 'react-responsive-carousel';
 import cx from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import { CheckIcon, XIcon, RefreshIcon } from './icons';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "./Global.css";
+import "./Prism.css";
 import './App.css';
 
 const initialData = [
@@ -31,7 +33,7 @@ const resetData = data => data.map(x => {
   return temp;
 });
 
-const reshuffle = ({ e, filteredData, selectedItem, setSelectedItem }) => {
+const goToNextCard = ({ e, filteredData, selectedItem, setSelectedItem }) => {
   if (e) {
     e.stopPropagation();
   }
@@ -51,7 +53,7 @@ const handleStatusClick = ({ e, filteredData, setFilteredData, selectedItem, set
     temp.splice(selectedItem, 1);
     setFilteredData(temp);
   } else {
-    reshuffle({ selectedItem, filteredData, setSelectedItem });
+    goToNextCard({ selectedItem, filteredData, setSelectedItem });
   }
 }
 
@@ -68,17 +70,19 @@ function App() {
   const [filteredData, setFilteredData] = useState(initialData);
 
   useEffect(() => {
+    // If there is still some cards left and the selectedItem is going to be one past the last, swing it around to the first card
     if (filteredData.length > 0 && selectedItem > filteredData.length - 1) {
-      setSelectedItem(filteredData.length - 1);
+      setSelectedItem(0);
     }
   }, [filteredData.length]);
 
   useEffect(() => {
-    var fetchMarkdownPromises = questions.map(q => Object.values(q).reduce((total, item) => { return [...total, item]; }, [])).flat().map(x => fetch(x));
+    // Fetching markdown on initial mount
+    var fetchMarkdownPromises = qaPairs.map(q => Object.values(q).reduce((total, item) => { return [...total, item]; }, [])).flat().map(x => fetch(x));
     Promise.all(fetchMarkdownPromises)
       .then(response => Promise.all(response.map(x => x.text())))
-      .then(blah => {
-        var temp = questions.map((q, i) => { q.question = blah[i + i]; q.answer = blah[i + i + 1]; return q; });
+      .then(markdownText => {
+        var temp = qaPairs.map((q, i) => { q.question = markdownText[i + i]; q.answer = markdownText[i + i + 1]; return q; });
         setData([...temp]);
         setFilteredData([...temp]);
       });
@@ -90,9 +94,9 @@ function App() {
         {filteredData.map((item, index) => (
           <div className={cx('Slide', {
             'is-flipped': item.isShowingAnswer
-          })} aria-hidden={index === selectedItem ? 'true' : 'false'}>
-            <div role="button" tabIndex={index === selectedItem ? null : '-1'} className="Slide-content" type="div" onClick={() => { setFilteredData(alterData(filteredData, selectedItem)) }}>
-              <div className="Card Card--front">
+          })}>
+            <div role="button" aria-label={item.isShowingAnswer ? 'Back to Question' : 'See Answer'} tabIndex={index === selectedItem && 0} className="Card" onClick={() => { setFilteredData(alterData(filteredData, selectedItem)) }}>
+              <div className="Card-front">
                 <div className="Card-num">{`${index + 1}/${filteredData.length}`}</div>
                 <ReactMarkdown renderers={{ code: CodeBlock }} source={item.question} escapeHtml={false} />
                 {filteredData.length < data.length && (
@@ -102,8 +106,10 @@ function App() {
                   </button>
                 )}
               </div>
-              <div className="Card Card--back">
-                <ReactMarkdown renderers={{ code: CodeBlock }} source={item.answer} escapeHtml={false} />
+              <div className="Card-back">
+                <div className="Card-backInner">
+                  <ReactMarkdown renderers={{ code: CodeBlock }} source={item.answer} escapeHtml={false} />
+                </div>
               </div>
             </div>
             <button onClick={e => handleStatusClick({ e, filteredData, setFilteredData, selectedItem, setSelectedItem, status: 'good' })} className="Card-icon Card-icon--right">
@@ -117,8 +123,8 @@ function App() {
       </Carousel>
       {filteredData.length === 0 && (
         <div className="Slide">
-          <div className="Slide-content">
-            <div className="Card Card--front Card--noNumbers">
+          <div className="Card">
+            <div className="Card-front Card-front--noNumbers">
               <button className="Card-refreshBtn" onClick={(e) => fullRefresh({ e, data, setFilteredData, setSelectedItem })}>Great job! Tap here to refresh!</button>
             </div>
           </div>

@@ -1,90 +1,3 @@
-@font-face {
-  font-family: 'PT_Sans';
-  src: url(./fonts/ptsans_regular.woff2) format('woff2');
-}
-@font-face {
-  font-family: 'PT_Sans';
-  src: url(./fonts/ptsans_bolditalic.woff2) format('woff2');
-  font-weight: bold;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'PT_Sans';
-  src: url(./fonts/ptsans_bold.woff2) format('woff2');
-  font-weight: bold;
-}
-@font-face {
-  font-family: 'PT_Sans';
-  src: url(./fonts/ptsans_italic.woff2) format('woff2');
-  font-style: italic;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-button {
-  font: inherit;
-  -webkit-appearance: none;
-  appearance: none;
-  padding: 0;
-  border: 0;
-}
-
-.App {
-  text-align: center;
-  font-family: 'PT_Sans';
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-p {
-  margin: .5em 0;
-}
-
-ul,
-ol {
-  text-align: left;
-  padding-top: .5em;
-}
-ul li,
-ol li {
-  margin: .5em 0;
-}
-.Card--back a {
-  color: #165783;
-  font-weight: bold;
-}
-
-body {
-  background-color: #1b262c;
-}
-
-.carousel .slide {
-  background-color: #1b262c;
-}
-
 .Slide {
   display: flex;
   justify-content: center;
@@ -92,9 +5,10 @@ body {
   flex-direction: column;
   height: 100vh;
   -webkit-perspective: 300vw;
-        perspective: 300vw;
+  perspective: 300vw;
+  background-color: #1b262c;
 }
-.Slide-content {
+.Card {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -104,14 +18,12 @@ body {
   color: #fff;
   width: 100%;
   padding: 1em;
-  /* overflow-y: auto; */
   border: 0;
   -webkit-overflow-scrolling: touch;
   width: calc(100% - 4rem);
   margin: 2rem 0;
   border-radius: 10px;
   cursor: pointer;
-
   position: relative;
   -webkit-transition: -webkit-transform .7s;
   transition: -webkit-transform .7s;
@@ -122,11 +34,12 @@ body {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
-.is-flipped .Slide-content {
+.is-flipped .Card {
   -webkit-transform: rotateY(180deg) translateZ(0);
   transform: rotateY(180deg) translateZ(0);
 }
-.Card {
+.Card-front,
+.Card-back {
   position: absolute;
   top: 0;
   left: 0;
@@ -146,14 +59,14 @@ body {
   padding: 2em;
   line-height: 1.1;
 }
-.Card--front {
+.Card-front {
   color: #fff;
   text-shadow: 1px 1px 3px rgba(0,0,0,.5);
   font-size: 1.75em;
   overflow: hidden;
   background-color: #3282b8;
 }
-.Card--front::before {
+.Card-front::before {
   content: '';
   position: absolute;
   top: 0;
@@ -165,7 +78,7 @@ body {
   background-color: #3282b8;
 background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpolygon fill='%23ffffff' fill-opacity='.1' points='120 0 120 60 90 30 60 0 0 0 0 0 60 60 0 120 60 120 90 90 120 60 120 0'/%3E%3C/svg%3E");
 }
-.Card--front:not(.Card--noNumbers)::after {
+.Card-front:not(.Card-front--noNumbers)::after {
   content: '';
   position: absolute;
   top: -2.5em;
@@ -177,7 +90,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   z-index: -1;
   opacity: .8;
 }
-.Card--back {
+.Card-back {
   color: #3282b8;
   font-size: 1.25em;
   -webkit-transform: translateZ(0) rotateY(180deg);
@@ -193,9 +106,17 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   font-size: 1rem;
 }
 @media (orientation: landscape) {
-  .Card--back {
+  .Card-back {
     padding: 2em 4em;
   }
+}
+.Card-back a {
+  color: #165783;
+  font-weight: bold;
+}
+.Card-backInner {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .Card-reshuffleBtn {
   position: absolute;
@@ -290,210 +211,13 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   transition: opacity .3s .7s;
   pointer-events: all;
 }
-pre {
-  border-radius: 5px;
-  padding: 15px !important;
-  max-width: 100%;
-  -webkit-overflow-scrolling: touch;
-  min-height: fit-content;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-.Card--front code {
+.Card-front code {
   background: rgba(255,255,255,.9);
   color: #3282b8;
   text-shadow: none;
 }
-code {
-  background: #3282b8;
-  color: white;
-  border-radius: 3px;
-  padding: 0px 2px;
-}
-pre code {
-  padding: 0;
-  border-radius: 0;
-  color: inherit;
-  background: inherit;
-}
-/* .Slide-button {
-  height: 100px;
-  width: 100%;
-  border: 0;
-  background-color: #bbe1fa;
-  color: #102E40;
-  -webkit-appearance: none;
-  appearance: none;
-  font-size: 2rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-style: italic;
-  transition: background-color .25s;
-  cursor: pointer;
-} */
-.Slide-content--answer {
-  /* background-color: #3282b8; */
-}
-.Slide-content:focus {
+.Card:focus {
   outline: 0;
   -webkit-highlight-color: none;
   -webkit-tap-highlight-color: none;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-/* PrismJS 1.19.0
-https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript */
-/**
- * prism.js default theme for JavaScript, CSS and HTML
- * Based on dabblet (http://dabblet.com)
- * @author Lea Verou
- */
-
- code[class*="language-"],
- pre[class*="language-"] {
-   color: black;
-   background: none;
-   text-shadow: 0 1px white;
-   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-   font-size: 1em;
-   text-align: left;
-   white-space: pre;
-   word-spacing: normal;
-   word-break: normal;
-   word-wrap: normal;
-   line-height: 1.5;
- 
-   -moz-tab-size: 4;
-   -o-tab-size: 4;
-   tab-size: 4;
- 
-   -webkit-hyphens: none;
-   -moz-hyphens: none;
-   -ms-hyphens: none;
-   hyphens: none;
- }
- 
- pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
- code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-   text-shadow: none;
-   background: #b3d4fc;
- }
- 
- pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
- code[class*="language-"]::selection, code[class*="language-"] ::selection {
-   text-shadow: none;
-   background: #b3d4fc;
- }
- 
- @media print {
-   code[class*="language-"],
-   pre[class*="language-"] {
-     text-shadow: none;
-   }
- }
- 
- /* Code blocks */
- pre[class*="language-"] {
-   padding: 1em;
-   margin: .5em 0;
-   overflow: auto;
- }
- 
- :not(pre) > code[class*="language-"],
- pre[class*="language-"] {
-   background: #f5f2f0;
- }
- 
- /* Inline code */
- :not(pre) > code[class*="language-"] {
-   padding: .1em;
-   border-radius: .3em;
-   white-space: normal;
- }
- 
- .token.comment,
- .token.prolog,
- .token.doctype,
- .token.cdata {
-   color: slategray;
- }
- 
- .token.punctuation {
-   color: #999;
- }
- 
- .token.namespace {
-   opacity: .7;
- }
- 
- .token.property,
- .token.tag,
- .token.boolean,
- .token.number,
- .token.constant,
- .token.symbol,
- .token.deleted {
-   color: #905;
- }
- 
- .token.selector,
- .token.attr-name,
- .token.string,
- .token.char,
- .token.builtin,
- .token.inserted {
-   color: #690;
- }
- 
- .token.operator,
- .token.entity,
- .token.url,
- .language-css .token.string,
- .style .token.string {
-   color: #9a6e3a;
-   background: hsla(0, 0%, 100%, .5);
- }
- 
- .token.atrule,
- .token.attr-value,
- .token.keyword {
-   color: #07a;
- }
- 
- .token.function,
- .token.class-name {
-   color: #DD4A68;
- }
- 
- .token.regex,
- .token.important,
- .token.variable {
-   color: #e90;
- }
- 
- .token.important,
- .token.bold {
-   font-weight: bold;
- }
- .token.italic {
-   font-style: italic;
- }
- 
- .token.entity {
-   cursor: help;
- }
- 
- 

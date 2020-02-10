@@ -1,6 +1,6 @@
 // PLEASE NOTE THAT THIS IS AN AUTO-GENERATED FILE.
 // PLEASE DO NOT UPDATE
-const QaPairs = [
+const qaPairs = [
   {
     question: "/question_answer_pairs/qa_pair1/question.md",
     answer: "/question_answer_pairs/qa_pair1/answer.md"
@@ -23,4 +23,4 @@ const QaPairs = [
   }
 ];
 
-export default QaPairs;
+export default qaPairs;

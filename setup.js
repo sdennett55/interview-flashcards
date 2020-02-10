@@ -17,11 +17,11 @@ fs.readdir(questionsFolder, (error, directories) => {
   const qaPairsFile = `
     // PLEASE NOTE THAT THIS IS AN AUTO-GENERATED FILE.
     // PLEASE DO NOT UPDATE
-    const QaPairs = [
+    const qaPairs = [
       ${dirObjects}
     ];
 
-    export default QaPairs;
+    export default qaPairs;
   `;
 
   fs.writeFileSync(path.join(__dirname, '/src/qa_pairs.js'), prettier.format(qaPairsFile, { parser: 'babel' }));
