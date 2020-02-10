@@ -23,7 +23,8 @@ I longed for an app where I could simply write my questions and answers in **mar
 1. Clone or fork the repo
 2. `cd interview-flashcards && npm start` (bootstrapped with create-react-app) 
 3. Add any questions and answers to the `public/question_answer_pairs` directory
-4. Push to github and then publish to a hosting platform of your choice ([Netlify](https://www.netlify.com/) perhaps), or just run locally and hit your computers IP on port 3000 on your mobile device
+4. `npm run build` for production or `npm start` to use locally
+5. Push to github and then publish to a hosting platform of your choice ([Netlify](https://www.netlify.com/) perhaps), or just run locally and hit your computers IP on port 3000 on your mobile device
 
 ## Available Scripts
 
@@ -46,6 +47,8 @@ Writes additional qa_pair directories to the `/question_answer_pairs` directory.
 ### `npm run setup`
 
 Reads the `/question_answer_pairs` directory and updates the mobile app. Run this when you delete any qa_pair directories.
+
+### Run `npm run` to see more
 
 ### Supported Versions:
 
